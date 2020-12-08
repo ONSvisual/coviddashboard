@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Coronavirus (COVID-19) ONS Dashboard</title>
+
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../lib/globalStyle.css" />
+	<style>
+
+	body{max-width:700px;}
+
+
+h1{
+  font-size: 30px;
+  font-weight: 700;
+  width:100%
+  color:#323132;
+  font-family: "Open Sans";
+  margin-bottom: 7px;
+}
+h2{
+  font-size: 20px;
+  width:100%;
+  font-weight: 700;
+  color:#323132;
+  font-family: "Open Sans";
+  margin-bottom: 20px;
+}
+  h5,h6 {
+       font-size: 16px;
+       padding-top: 0px;
+       padding: 0px;
+       font-weight: 700;
+       color:#323132;
+       font-family: "Open Sans";
+    }
+
+    #selectionDescription {
+         font-size: 22px;
+         font-weight: 700;
+         padding-left: 0px;
+         color:#323132;
+         font-family: "Open Sans";
+      }
+
+  ul, ol {
+    margin: 16px 0;
+    padding-left: 32px;
+  }
+
+  li {
+      margin: 0 0 8px 0;
+      line-height: 32px;
+      font-weight: 400;
+      font-size: 18px;
+      padding: 0;
+  }
+
+
+  a {
+      text-decoration: underline;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 32px;
+  }
+
+  .btn {
+      font-family: "Open Sans",Helvetica,Arial,sans-serif;
+      display: inline-block;
+      width: auto;
+      cursor: pointer;
+      padding: 6px 16px 10px 16px;
+      border: 0 none;
+      text-align: center;
+      -webkit-appearance: none;
+      transition: background-color 0.25s ease-out;
+  }
+
+  .btn--primary:focus {
+  background-color: #0b5d30;
+}
+
+  .btn--primary {
+  background-color: #0F8243;
+  color: #fff;
+}
+
+	  @media (max-width: 450px) {
+  		#top, #btm {
+  			width:100%;
+
+  		}
+	  }
+    .visuallyhidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    .bottonGroup{
+      height: 35px;
+      color: white;
+      margin-left:4px;
+      margin-top:10px;
+      margin-bottom:10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-bottom: 15px;
+      font-weight: bold;
+      padding-top: 10px;
+      float: left;
+      border-width: 0px;
+      cursor: pointer;
+      cursor: hand;
+    }
+    .bottonGroup:hover{
+      outline: 4px solid orange;
+    }
+    .bottonGroup:focus{
+      outline: 4px solid orange;
+    }
+    .readmore{
+      cursor: pointer;
+      cursor: hand;
+    }
+
+    .selectedButton{
+      outline: 4px solid orange;
+    }
+    .collapsible{
+      color:#4774CC;
+      margin-top: 10px;
+      text-decoration: underline;
+      font-size: 16px;
+      cursor: pointer;
+      cursor: hand;
+    }
+    .collapsibleContent{
+      display: none;
+      min-width: 450px;
+      height: 40px;
+      margin-top: 10px;
+      background-color: #EAEAEA;
+      border-color: #dadada;
+      border-width: 4px;
+      border-style: solid;
+      font-size: 16px;
+    }
+    .collapsibleContent:focus{
+      border-color: orange;
+    }
+    #selectionOverview{
+      font-size: 16px;
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+
+
+
+
+    </style>
+
+</head>
+<body>
+
+
+
+<h1>Coronavirus (COVID-19) Latest Insights</h1>
+<h2>An interactive tool to explore the latest data and trends about the coronavirus (COVID-19) pandemic from ONS and other sources.</h2>
+<div style="width:100%; height:2px; background-color:#dadada; margin-top:10px; margin-bottom:20px;"></div>
+
+
+  <button tabindex="0" aria-label="See an overview of Coronavirus (COVID-19) statistics" class="bottonGroup OverviewButton selectedButton" heading="Latest headlines about the pandemic" view="overview" style="background-color:#206095; margin-right:0px;  margin-bottom:15px;">Latest headlines</button>
+
+<h3 style="clear:both; font-weight: bold; padding-left:0px;">Filter by category;</h3>
+<button tabindex="0" aria-label="Get a more detailed overview of statistics on the Coronavirus pandemic" class="bottonGroup Buttontheme GeneralpictureButton" heading="Overview of the pandemic" view="overview" style="background-color:#206095;">Pandemic overview</button>
+  <button tabindex="0" aria-label="Filter information by infection statistics" class="bottonGroup Button InfectionsButton" heading="Overview of infections" view="infections" style="background-color:#118C7B;">Infections</button>
+  <button tabindex="0" aria-label="Filter information by death statistics" class="bottonGroup Button DeathsButton" heading="Overview of deaths" view="deaths" style="background-color:#871A5B;">Deaths</button>
+  <button tabindex="0" aria-label="Filter information by impact of coronavirus on society statistics" class="bottonGroup Button SocietyButton" heading="Overview of society" view="society" style="background-color:#746CB1;">Society</button>
+  <button tabindex="0" aria-label="Filter by statistics relating to different age groups" class="bottonGroup Buttontheme AgeButton" heading="Overview by age" view="age" style="background-color:#206095;">Age</button>
+  <button tabindex="0" aria-label="Filter by ststistics relating to different areas of the country" class="bottonGroup Buttontheme RegionalButton" heading="Statistics by place" view="regional" style="background-color:#206095;">Place</button>
+
+<div style="width:100%; height:2px; clear:both; background-color:#dadada; margin-top:10px; margin-bottom:20px;"></div>
+
+<h2 id="selectionDescription"></h2>
+<h3 id="selectionOverview">
+In recent weeks, the Coronavirus (COVID-19) positivity rate in England has shown signs of levelling. The number of deaths involving COVID-19 in England and Wales has risen for the 12th consecutive week. Average personal well-being scores for life satisfaction (6.8) increased slightly compared with last week.
+</h3>
+<div aria-live="assertive" id="analysisHere"></div>
+
+<div style="width:100%; height:2px; clear:both; background-color:#dadada; margin-top:20px; margin-bottom:20px;"></div>
+<div style="max-width:500px; margin-right: 10px; margin-bottom: 10px;" id="glossary"></div>
+<div style="width:100%; height:2px; clear:both; background-color:#dadada; margin-top:20px; margin-bottom:20px;"></div>
+
+    <script src="https://cdn.ons.gov.uk/vendor/d3/4.2.7/d3.min.js"></script>
+    <script src="../../lib/modernizr.svg.min.js"></script>
+    <script src="https://cdn.ons.gov.uk/vendor/pym/1.3.2/pym.min.js"></script>
+
+    <script>
+    var pymChild = null;
+    pymChild = new pym.Child();
+	pym.Child({ renderCallback: drawgraphic })
+
+	function drawgraphic(){
+
+      var pymParent = new pym.Parent('glossary', 'https://www.ons.gov.uk/visualisations/dvc988/line/index.html', {});
+
+      //on load draw top level
+      //drawTopLevel();
+      //some global vars
+      embedSwitch = "closed";
+
+      //read in l1 data and draw on load
+      d3.csv("../level1.csv", function(error, data) {
+        graphic_data_l1 = data;
+        drawl1(graphic_data_l1);
+      });
+
+      //dealing with top level view on click of button
+      d3.select(".OverviewButton").on("click",function(){
+        d3.csv("../level1.csv", function(error, data) {
+          d3.select("#selectionOverview").style("display","block")
+          graphic_data_l1 = data;
+          drawl1(graphic_data_l1);
+        });
+      });
+
+      function drawl1(graphic_data_l1){
+        //calculate widths
+        deviceWidth = parseInt(d3.select("body").style("width"));
+        tileWidth = 222;
+        if(deviceWidth<450){tileWidth=320}
+        else{tileWidth=222};
+
+        //change button feedback
+        d3.selectAll(".bottonGroup").classed("selectedButton",false)
+        d3.select(".OverviewButton").classed("selectedButton",true)
+        //clear out stuff and change the heading
+        d3.select("#analysisHere").selectAll("*").remove();
+        d3.select("#selectionDescription").text("Latest headlines about the pandemic");
+
+        //draw tiles
+        graphic_data_l1.forEach(function(d,i){
+          d3.select("#analysisHere")
+            .append("div")
+            .attr("aria-hidden","true")
+            .style("width","100%")
+            .style("max-width",function(){return tileWidth + "px"})
+            .style("float","left")
+            .style("margin-right","4px")
+            .style("min-height","100px")
+            .style("margin-bottom","8px")
+            .style("border-radius","9px")
+            .style("outline","4px solid "+graphic_data_l1[i].colour)
+            .style("outline-offset","-4px")
+            .attr("class","tile tile"+i);
+        })
+          populate1(tileWidth);
+      }
+
+      function populate1(tileWidth){
+          graphic_data_l1.forEach(function(d,i){
+            //add titles
+            d3.select(".tile"+i)
+              .append("div")
+              .text(graphic_data_l1[i].title)
+              .style("height","50px")
+              .style("min-width",function(){return (tileWidth - 16) + "px"})
+              .style("background-color",graphic_data_l1[i].colour)
+              .style("color","#fff")
+              .style("font-weight","bold")
+              .style("padding-left","8px")
+              .style("padding-right","8px")
+              .style("padding-top","4px")
+
+            //create subtitle
+            d3.select(".tile"+i)
+              .append("div")
+              .text(graphic_data_l1[i].subtitle)
+              .style("font-size","14px")
+              .style("padding-left","8px")
+              .style("padding-right","8px")
+              .style("padding-top","0px")
+              .style("min-height","77px")
+              .style("margin-bottom","0px")
+
+            //create divs for charts
+            d3.select(".tile"+i)
+              .append("div")
+              .style("width",function(){return (tileWidth - 16) + "px"})
+              .attr("id","l1chartdiv"+i);
+
+            //create source text
+            d3.select(".tile"+i)
+              .append("div")
+              .text(graphic_data_l1[i].sourcetext)
+              .style("font-size","14px")
+              .style("padding-left","8px")
+              .style("padding-right","8px")
+              .style("padding-top","4px")
+
+            //create commentary sentence
+            // d3.select(".tile"+i)
+            //   .append("div")
+            //   .text(graphic_data_l1[i].commentary)
+            //   .style("font-size","16px")
+            //   .style("padding-left","8px")
+            //   .style("padding-right","8px")
+            //   .style("padding-top","4px")
+            //   .style("min-height","114px")
+            //   .style("margin-bottom","8px")
+
+            d3.select(".tile"+i)
+              .append("div")
+              .attr("class","readmore readmore" + graphic_data_l1[i].statcategory)
+              .attr("filterHow","statcategory")
+              .attr("whichButton",graphic_data_l1[i].button)
+              .attr("view",graphic_data_l1[i].statcategory)
+              .style("background-color",graphic_data_l1[i].colour)
+              .style("padding-left","8px")
+              .style("padding-right","8px")
+              .style("padding-top","4px")
+              .text("Read more about "+ graphic_data_l1[i].statcategory)
+              .style("height","50px")
+              .style("color","#fff")
+              .style("font-weight","bold")
+              .style("text-decoration","underline")
+              .style("font-size","16px")
+              .style("min-width",function(){return (tileWidth - 16) + "px"})
+
+              var pymParent = new pym.Parent("l1chartdiv"+i, graphic_data_l1[i].charturl, {});
+
+
+            d3.selectAll(".readmore").on("click",function(){
+              console.log("clicked");
+                d3.selectAll(".bottonGroup").classed("selectedButton",false)
+                whichButton = d3.select(this).attr("whichButton")
+                d3.select("." + whichButton).classed("selectedButton",true)
+
+                view = d3.select(this).attr("view");
+                heading = d3.select(this).attr("heading");
+                filterHow = "statcategory";
+
+                window.parent.document.body.scrollTop = 0;
+                window.parent.document.documentElement.scrollTop = 0;
+                //
+                // document.body.scrollTop = 0; // For Safari
+                // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
+                changeView(view,heading,filterHow);
+              })
+          })
+      };
+
+
+      d3.csv("../level2.csv", function(error, data) {
+        graphic_data = data;
+      });
+
+          d3.selectAll(".Button").on("click",function(){
+              d3.selectAll(".bottonGroup").classed("selectedButton",false)
+              d3.select(this).classed("selectedButton",true)
+
+              view = d3.select(this).attr("view");
+              heading = d3.select(this).attr("heading");
+              filterHow = "statcategory";
+
+              changeView(view,heading,filterHow);
+            })
+
+
+            d3.selectAll(".Buttontheme").on("click",function(){
+              d3.selectAll(".bottonGroup").classed("selectedButton",false)
+              d3.select(this).classed("selectedButton",true)
+
+              view = d3.select(this).attr("view");
+              heading = d3.select(this).attr("heading");
+              filterHow = "themecategory";
+
+              changeView(view,heading,filterHow);
+            })
+
+            function changeView(view,heading,filterHow){
+              if(filterHow=="statcategory"){
+                description = graphic_data.filter(function(d){return d.statcategory==view});
+              }else{
+                description = graphic_data.filter(function(d){return d.themecategory==view});
+              };
+              //empty stuff out
+              d3.select("#analysisHere").selectAll("*").remove();
+              //change the heading
+              d3.select("#selectionDescription").text(heading);
+              d3.select("#selectionOverview").style("display","none")
+              //draw associated charts
+              description.forEach(function(d,i){
+                //set up coloured tags
+                d3.select("#analysisHere")
+                  .append("div")
+                  .style("width","200px")
+                  .style("height","8px")
+                  .style("border-radius","9px")
+                  .style("background-color",description[i].colour)
+                  .style("margin-top","40px");
+                  //set up titles
+                  d3.select("#analysisHere")
+                    .append("h2")
+                    .style("font-size","20px")
+                    .style("margin-bottom","16px")
+                    .style("margin-top","15px")
+                    .text(description[i].title)
+                    .style("line-height",1.75);
+                    //set up subtitles
+                    d3.select("#analysisHere")
+                      .append("h2")
+                      .style("font-size","16px")
+                      .style("font-weight","500")
+                      .style("line-height",1.75)
+                      .style("margin-bottom","16px")
+                      .text(description[i].subtitle);
+                      //set up charts
+                      d3.select("#analysisHere")
+                        .append("div")
+                        .attr("id","chartDiv" + i)
+                        .style("margin-bottom","24px");
+                        //set up commentary
+                        d3.select("#analysisHere")
+                          .append("p")
+                          .style("font-size","16px")
+                          .text(description[i].commentary)
+                          .style("margin-bottom","10px")
+                          .style("line-height",1.75);
+                          //set up date stamp
+                        d3.select("#analysisHere")
+                          .append("p")
+                          .style("font-size","14px")
+                          .text("Last updated: " + description[i].datestamp)
+                          .style("line-height",1.75);
+                          //set up source
+                          d3.select("#analysisHere")
+                            .append("a")
+                            .style("font-size","16px")
+                            .attr("href",description[i].source)
+                            .attr("target","_blank")
+                            .text("Read more about this in our bulletins and articles")
+                            .style("line-height",1.75);
+                            //append button for embed code
+                            d3.select("#analysisHere")
+                              .append("div")
+                              .attr("class","collapsible collapsible"+i)
+                              .attr("refersTo","collapsibleContent"+i)
+                              .text("▶ Embed this chart");
+                              d3.select("#analysisHere")
+                                .append("input")
+                                .style("margin-left","4px")
+                                .attr("class","collapsibleContent collapsibleContent"+i)
+                                .attr("value","<iframe height='500px' width='100%' src=' "+description[i].charturl+" '></iframe>");
+
+                            //set up some padding
+                            d3.select("#analysisHere").append("div").attr("aria-hidden","true").style("margin-bottom","70px");
+
+                              //deal with embedding twisties
+                              d3.selectAll(".collapsible").on("click",function(){
+                                refersTo = d3.select(this).attr("refersTo");
+                                if(embedSwitch=="closed"){
+                                  d3.select("."+refersTo).style("display","block")
+                                  embedSwitch = "open";
+                                  d3.select(this).text("▼ Embed this chart")
+                                } else {
+                                  d3.selectAll(".collapsibleContent").style("display","none")
+                                  embedSwitch = "closed";
+                                  d3.selectAll(".collapsible").text("▶ Embed this chart")
+                                }
+                              })
+              })
+              populateCharts(description);
+            }
+
+            function populateCharts(description){
+                  var pymParent = new pym.Parent("chartDiv0", description[0].charturl, {});
+                  var pymParent = new pym.Parent("chartDiv1", description[1].charturl, {});
+                  var pymParent = new pym.Parent("chartDiv2", description[2].charturl, {});
+                  var pymParent = new pym.Parent("chartDiv3", description[3].charturl, {});
+                  var pymParent = new pym.Parent("chartDiv4", description[4].charturl, {});
+                  var pymParent = new pym.Parent("chartDiv5", description[5].charturl, {});
+                  var pymParent = new pym.Parent("chartDiv6", description[6].charturl, {});
+                  var pymParent = new pym.Parent("chartDiv7", description[7].charturl, {});
+                  var pymParent = new pym.Parent("chartDiv8", description[8].charturl, {});
+                  var pymParent = new pym.Parent("chartDiv9", description[9].charturl, {});
+            };
+
+		pymChild.sendHeight();
+
+		setTimeout(function(){
+			pymChild.sendHeight();
+		},3000);
+
+    setInterval(function(){
+			pymChild.sendHeight();
+		},1000);
+	}
+
+
+    </script>
+</body>
+</html>
