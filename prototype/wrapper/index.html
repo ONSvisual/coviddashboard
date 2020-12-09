@@ -13,8 +13,19 @@
     <link rel="stylesheet" href="../../lib/globalStyle.css" />
 	<style>
 
-	body{max-width:700px;}
+	body{
+    max-width:950px;
+    color: #323132;
+  }
 
+  #intro, #bottomSection{
+    max-width: 700px;
+    /* margin:0px auto; */
+  }
+
+section {
+  margin-bottom:30px !important;
+}
 
 h1{
   font-size: 30px;
@@ -31,6 +42,10 @@ h2{
   color:#323132;
   font-family: "Open Sans";
   margin-bottom: 20px;
+}
+
+h3 {
+  font-size:18px;
 }
   h5,h6 {
        font-size: 16px;
@@ -91,11 +106,24 @@ h2{
   color: #fff;
 }
 
-	  @media (max-width: 450px) {
+.tile {
+  width: calc(33.3% - 10px);
+  margin-left:5px;
+  margin-right:5px;
+}
+
+	  @media (max-width: 550px) {
   		#top, #btm {
   			width:100%;
 
   		}
+
+      .tile {
+        width: 100%;
+        margin-left:0px;
+        margin-right:0px;
+        /* margin-left:10px; */
+      }
 	  }
     .visuallyhidden {
       position: absolute;
@@ -108,16 +136,21 @@ h2{
       border: 0;
     }
 
+    #buttonGroup {
+      display:inline-block;
+    }
+
     .bottonGroup{
-      height: 35px;
+      height: 40px;
       color: white;
       margin-left:4px;
       margin-top:10px;
-      margin-bottom:10px;
+      margin-bottom:0px;
       padding-left: 10px;
       padding-right: 10px;
       padding-bottom: 15px;
       font-weight: bold;
+      font-size:18px;
       padding-top: 10px;
       float: left;
       border-width: 0px;
@@ -161,9 +194,9 @@ h2{
       border-color: orange;
     }
     #selectionOverview{
-      font-size: 16px;
-      line-height: 1.75;
-      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 32px;
     }
 
 
@@ -176,34 +209,45 @@ h2{
 <body>
 
 
-
-<h1>Coronavirus (COVID-19) Latest Insights</h1>
+<section id="intro">
+<!-- <h1>Coronavirus (COVID-19) Latest Insights</h1>
 <h2>An interactive tool to explore the latest data and trends about the coronavirus (COVID-19) pandemic from ONS and other sources.</h2>
-<div style="width:100%; height:2px; background-color:#dadada; margin-top:10px; margin-bottom:20px;"></div>
+<div style="width:100%; height:2px; background-color:#dadada; margin-top:10px; margin-bottom:20px;"></div> -->
 
 
   <button tabindex="0" aria-label="See an overview of Coronavirus (COVID-19) statistics" class="bottonGroup OverviewButton selectedButton" heading="Latest headlines about the pandemic" view="overview" style="background-color:#206095; margin-right:0px;  margin-bottom:15px;">Latest headlines</button>
 
 <h3 style="clear:both; font-weight: bold; padding-left:0px;">Filter by category;</h3>
-<button tabindex="0" aria-label="Get a more detailed overview of statistics on the Coronavirus pandemic" class="bottonGroup Buttontheme GeneralpictureButton" heading="Overview of the pandemic" view="overview" style="background-color:#206095;">Pandemic overview</button>
-  <button tabindex="0" aria-label="Filter information by infection statistics" class="bottonGroup Button InfectionsButton" heading="Overview of infections" view="infections" style="background-color:#118C7B;">Infections</button>
+<div id="buttonGroup">
+  <button tabindex="0" aria-label="Get a more detailed overview of statistics on the Coronavirus pandemic" class="bottonGroup Buttontheme GeneralpictureButton" heading="Overview of the pandemic" view="overview" style="background-color:#206095;">Pandemic overview</button>
+  <button tabindex="0" aria-label="Filter information by infection statistics" class="bottonGroup Button InfectionsButton" heading="Overview of infections" view="infections" style="background-color:#0C645A;">Infections</button>
   <button tabindex="0" aria-label="Filter information by death statistics" class="bottonGroup Button DeathsButton" heading="Overview of deaths" view="deaths" style="background-color:#871A5B;">Deaths</button>
   <button tabindex="0" aria-label="Filter information by impact of coronavirus on society statistics" class="bottonGroup Button SocietyButton" heading="Overview of society" view="society" style="background-color:#746CB1;">Society</button>
   <button tabindex="0" aria-label="Filter by statistics relating to different age groups" class="bottonGroup Buttontheme AgeButton" heading="Overview by age" view="age" style="background-color:#206095;">Age</button>
   <button tabindex="0" aria-label="Filter by ststistics relating to different areas of the country" class="bottonGroup Buttontheme RegionalButton" heading="Statistics by place" view="regional" style="background-color:#206095;">Place</button>
-
+</div>
 <div style="width:100%; height:2px; clear:both; background-color:#dadada; margin-top:10px; margin-bottom:20px;"></div>
 
 <h2 id="selectionDescription"></h2>
 <h3 id="selectionOverview">
 In recent weeks, the Coronavirus (COVID-19) positivity rate in England has shown signs of levelling. The number of deaths involving COVID-19 in England and Wales has risen for the 12th consecutive week. Average personal well-being scores for life satisfaction (6.8) increased slightly compared with last week.
 </h3>
+
+</section>
+
+<section id="analysis">
+
 <div aria-live="assertive" id="analysisHere"></div>
+
+</section>
+
+<section id="bottomSection">
 
 <div style="width:100%; height:2px; clear:both; background-color:#dadada; margin-top:20px; margin-bottom:20px;"></div>
 <div style="max-width:500px; margin-right: 10px; margin-bottom: 10px;" id="glossary"></div>
 <div style="width:100%; height:2px; clear:both; background-color:#dadada; margin-top:20px; margin-bottom:20px;"></div>
 
+</section>
     <script src="https://cdn.ons.gov.uk/vendor/d3/4.2.7/d3.min.js"></script>
     <script src="../../lib/modernizr.svg.min.js"></script>
     <script src="https://cdn.ons.gov.uk/vendor/pym/1.3.2/pym.min.js"></script>
@@ -215,7 +259,7 @@ In recent weeks, the Coronavirus (COVID-19) positivity rate in England has shown
 
 	function drawgraphic(){
 
-      var pymParent = new pym.Parent('glossary', 'https://www.ons.gov.uk/visualisations/dvc988/line/index.html', {});
+      var pymParent = new pym.Parent('glossary', 'https://www.ons.gov.uk/visualisations/dvc988/line/index.html', {title: "Interactive - Glossary of common Covid terms"});
 
       //on load draw top level
       //drawTopLevel();
@@ -232,6 +276,7 @@ In recent weeks, the Coronavirus (COVID-19) positivity rate in England has shown
       d3.select(".OverviewButton").on("click",function(){
         d3.csv("../level1.csv", function(error, data) {
           d3.select("#selectionOverview").style("display","block")
+          d3.select("#analysisHere").style("max-width","950px")
           graphic_data_l1 = data;
           drawl1(graphic_data_l1);
         });
@@ -239,10 +284,10 @@ In recent weeks, the Coronavirus (COVID-19) positivity rate in England has shown
 
       function drawl1(graphic_data_l1){
         //calculate widths
-        deviceWidth = parseInt(d3.select("body").style("width"));
-        tileWidth = 222;
-        if(deviceWidth<450){tileWidth=320}
-        else{tileWidth=222};
+        //deviceWidth = parseInt(d3.select("body").style("width"));
+        //tileWidth = deviceWidth - 16;
+        // if(deviceWidth<450){tileWidth=320}
+        // else{tileWidth=222};
 
         //change button feedback
         d3.selectAll(".bottonGroup").classed("selectedButton",false)
@@ -256,10 +301,9 @@ In recent weeks, the Coronavirus (COVID-19) positivity rate in England has shown
           d3.select("#analysisHere")
             .append("div")
             .attr("aria-hidden","true")
-            .style("width","100%")
-            .style("max-width",function(){return tileWidth + "px"})
+            //.style("width","100%")
+            //.style("max-width",function(){return tileWidth + "px"})
             .style("float","left")
-            .style("margin-right","4px")
             .style("min-height","100px")
             .style("margin-bottom","8px")
             .style("border-radius","9px")
@@ -267,17 +311,18 @@ In recent weeks, the Coronavirus (COVID-19) positivity rate in England has shown
             .style("outline-offset","-4px")
             .attr("class","tile tile"+i);
         })
-          populate1(tileWidth);
+          populate1();
       }
 
-      function populate1(tileWidth){
+      function populate1(){
           graphic_data_l1.forEach(function(d,i){
             //add titles
             d3.select(".tile"+i)
               .append("div")
               .text(graphic_data_l1[i].title)
-              .style("height","50px")
-              .style("min-width",function(){return (tileWidth - 16) + "px"})
+              .style("height","60px")
+              .style("font-size","18px")
+              //.style("min-width",function(){return "calc(100% - 10px)"})
               .style("background-color",graphic_data_l1[i].colour)
               .style("color","#fff")
               .style("font-weight","bold")
@@ -289,7 +334,7 @@ In recent weeks, the Coronavirus (COVID-19) positivity rate in England has shown
             d3.select(".tile"+i)
               .append("div")
               .text(graphic_data_l1[i].subtitle)
-              .style("font-size","14px")
+              .style("font-size","16px")
               .style("padding-left","8px")
               .style("padding-right","8px")
               .style("padding-top","0px")
@@ -299,7 +344,7 @@ In recent weeks, the Coronavirus (COVID-19) positivity rate in England has shown
             //create divs for charts
             d3.select(".tile"+i)
               .append("div")
-              .style("width",function(){return (tileWidth - 16) + "px"})
+              .style("width",function(){return "calc(100% - 16px)"})
               .attr("id","l1chartdiv"+i);
 
             //create source text
@@ -338,9 +383,9 @@ In recent weeks, the Coronavirus (COVID-19) positivity rate in England has shown
               .style("font-weight","bold")
               .style("text-decoration","underline")
               .style("font-size","16px")
-              .style("min-width",function(){return (tileWidth - 16) + "px"})
+            //  .style("min-width",function(){return (tileWidth - 16) + "px"})
 
-              var pymParent = new pym.Parent("l1chartdiv"+i, graphic_data_l1[i].charturl, {});
+              var pymParent = new pym.Parent("l1chartdiv"+i, graphic_data_l1[i].charturl, {title: "Chart - " + graphic_data_l1[i].title});
 
 
             d3.selectAll(".readmore").on("click",function(){
@@ -400,6 +445,7 @@ In recent weeks, the Coronavirus (COVID-19) positivity rate in England has shown
               };
               //empty stuff out
               d3.select("#analysisHere").selectAll("*").remove();
+              d3.select("#analysisHere").style("max-width","700px")
               //change the heading
               d3.select("#selectionDescription").text(heading);
               d3.select("#selectionOverview").style("display","none")
@@ -437,16 +483,16 @@ In recent weeks, the Coronavirus (COVID-19) positivity rate in England has shown
                         //set up commentary
                         d3.select("#analysisHere")
                           .append("p")
-                          .style("font-size","16px")
+                          .style("font-size","18px")
                           .text(description[i].commentary)
                           .style("margin-bottom","10px")
-                          .style("line-height",1.75);
+                          .style("line-height","32px");
                           //set up date stamp
                         d3.select("#analysisHere")
                           .append("p")
-                          .style("font-size","14px")
+                          .style("font-size","18px")
                           .text("Last updated: " + description[i].datestamp)
-                          .style("line-height",1.75);
+                          .style("line-height","32px");
                           //set up source
                           d3.select("#analysisHere")
                             .append("a")
@@ -488,16 +534,10 @@ In recent weeks, the Coronavirus (COVID-19) positivity rate in England has shown
             }
 
             function populateCharts(description){
-                  var pymParent = new pym.Parent("chartDiv0", description[0].charturl, {});
-                  var pymParent = new pym.Parent("chartDiv1", description[1].charturl, {});
-                  var pymParent = new pym.Parent("chartDiv2", description[2].charturl, {});
-                  var pymParent = new pym.Parent("chartDiv3", description[3].charturl, {});
-                  var pymParent = new pym.Parent("chartDiv4", description[4].charturl, {});
-                  var pymParent = new pym.Parent("chartDiv5", description[5].charturl, {});
-                  var pymParent = new pym.Parent("chartDiv6", description[6].charturl, {});
-                  var pymParent = new pym.Parent("chartDiv7", description[7].charturl, {});
-                  var pymParent = new pym.Parent("chartDiv8", description[8].charturl, {});
-                  var pymParent = new pym.Parent("chartDiv9", description[9].charturl, {});
+
+              for (i = 0; i < description.length; i++) {
+                var pymParent = new pym.Parent("chartDiv" + i, description[i].charturl, {title:"Chart - " + description[i].title});
+              }
             };
 
 		pymChild.sendHeight();
